@@ -12,11 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HeartHome.Data\HeartHome.Data.csproj" />
+    <ProjectReference Include="..\HeartHome.Entities\HeartHome.Entities.csproj" />
   </ItemGroup>
 
 </Project>
