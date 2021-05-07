@@ -9,9 +9,12 @@ namespace HeartHome.Entities
 {
     public class Bank
     {
+        [Required]
         public int BankID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required(ErrorMessage = "Debe agregar el nombre del banco.")]
         public string Name { get; set;}
+
         public ICollection<BankAccount> BankAccounts { get; set; }
     }
 }

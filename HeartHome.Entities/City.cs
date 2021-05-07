@@ -9,13 +9,16 @@ namespace HeartHome.Entities
 {
     public class City
     {
+        [Required]
         public int CityID { get; set; }
-        [Required(ErrorMessage ="")]
+
+        [Required(ErrorMessage ="Debe agregar el nombre de la ciudad.")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "")]
-        [StringLength(50,ErrorMessage ="")]
+
+        [Required]
+        [StringLength(50,ErrorMessage ="Debe agregar el nombre del País.")]
         public string Country { get; set; }
-        [Required(ErrorMessage = "")]
+
         public ICollection<Property> Properties { get; set; }
     }
     

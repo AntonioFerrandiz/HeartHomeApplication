@@ -9,14 +9,20 @@ namespace HeartHome.Entities
 {
     public class CommentTenant
     {
+        [Required]
         public int CommentID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required(ErrorMessage = "Debe ser un propietario para opinar sobre un inquilino.")]
         public int LessorID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required]
         public int Date { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required(ErrorMessage = "Debe ingresar el comentario.")]
         public string Detail { get; set; }
+
         public ICollection<Tenant> Tenants { get; set; }
+
         public virtual Lessor Lessor { get; set; }
     }
 }

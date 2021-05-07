@@ -9,20 +9,28 @@ namespace HeartHome.Entities
 {
     public class Contract
     {
+        [Required]
         public int ContractID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required]
         public int TenantID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required]
         public int PropertyID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required]
         public int LessorID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required]
         public string DateContract { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required(ErrorMessage = "Debe agregar los detalles del contrato.")]
         public string detail { get; set; }
 
         public virtual Tenant Tenant { get; set; }
+
         public virtual Property Property { get; set; }
+
         public virtual Lessor Lessor { get; set; }
     }
 }

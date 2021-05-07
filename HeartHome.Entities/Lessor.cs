@@ -9,27 +9,37 @@ namespace HeartHome.Entities
 {
     public class Lessor
     {
+        [Required]
         public int LessorID { get; set; }
-        [Required(ErrorMessage ="")]
+
+        [Required]
         public int AccountID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required(ErrorMessage = "Debe ingresar el nombre del propietario.")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required(ErrorMessage = "Debe ingresar el apellido del propietario.")]
         public string Lastname { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required(ErrorMessage = "Debe ingresar el email del propietario.")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "El nombre de la propiedad debe tener de 3 a 50 caracteres")]
+
+        [Required(ErrorMessage = "Debe ingresar el DNI del propietario")]
+        [StringLength(8, MinimumLength = 8, ErrorMessage = "El DNI debe tener de 8 digitos.")]
         public int Dni { get; set; }
+
         [Required(ErrorMessage = "")]
-        [StringLength(8, MinimumLength = 8, ErrorMessage = "El dni debe tener 8 digitos")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "El número de celular debe tener 9 digitos")]
         public int Phone { get; set; }
-        [Required(ErrorMessage = "")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "El número debe tener 9 digitos")]
+
         public ICollection<Property> Properties { get; set; }
+
         public ICollection<Message> Messages { get; set; }
+
         public ICollection<CommentTenant> CommentTenants { get; set; }
+
         public ICollection<Contract> Contracts { get; set; }
+
         public virtual BankAccount BankAccount { get; set; }
     }
 }

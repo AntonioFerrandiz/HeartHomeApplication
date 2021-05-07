@@ -9,19 +9,28 @@ namespace HeartHome.Entities
 {
     public class BankAccount
     {
+        [Required]
         public int BankAccountID { get; set; }
-        [Required(ErrorMessage ="")]
+
+        [Required]
         public int BankID { get; set; }
-        [Required(ErrorMessage ="")]
+
+        [Required(ErrorMessage = "Debe ingresar el número de la tarjeta.")]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = "El número de la tarjeta debe tener 16 dígitos")]
         public int AccountNumber { get; set; }
-        [Required(ErrorMessage ="")]
-        [StringLength(16,ErrorMessage ="El número de cuenta debe tener un máximo de 16 dígitos")]
+
         //REVISAR LO DE ABAJITO
-        public string DateCreation { get; set; }
-        [Required(ErrorMessage ="")]
+        [Required(ErrorMessage ="Debe ingresar la fecha de expiración de la tarjeta.")]
+        public string DateExpiration { get; set; }
+
+        [Required]
+        [StringLength(3, MinimumLength = 3, ErrorMessage = "El número de cuenta debe tener 3 dígitos")]
         public int CVC { get; set; }
+
         public ICollection<Lessor> Lessors { get; set; }
+
         public ICollection<Tenant> Tenants { get; set; }
+
         public virtual Bank Bank { get; set; }
     }
 }

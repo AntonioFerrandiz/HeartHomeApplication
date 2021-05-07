@@ -9,15 +9,20 @@ namespace HeartHome.Entities
 {
     public class Message
     {
+        [Required]
         public int MessageID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [Required]
         public int LessorID { get;set; }
-        [Required(ErrorMessage = "")]
+
+        [Required]
         public int TenantID { get; set; }
-        [Required(ErrorMessage = "")]
+
+        [StringLength(250, ErrorMessage = "El mensaje debe tener un máximo de 250 caracteres.")]
         public string Content { get; set; }
-        [MaxLength(50, ErrorMessage ="")]
+
         public virtual Lessor Lessor { get; set; }
+
         public virtual Tenant Tenant { get; set; }
         //????????
     }
