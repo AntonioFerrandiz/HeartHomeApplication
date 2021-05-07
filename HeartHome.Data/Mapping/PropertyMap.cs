@@ -33,10 +33,6 @@ namespace HeartHome.Data.Mapping
                 .HasColumnName("name")
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            builder.Property(c => c.Phone)
-                .HasColumnName("phone")
-                .HasMaxLength(9)
-                .HasColumnType("int");
 
             //FK
             //Tabla con FK es public virtual

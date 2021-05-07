@@ -22,7 +22,7 @@ namespace HeartHome.Data.Mapping
             builder.Property(c => c.AccountNumber)
                 .HasColumnName("account_number")
                 .HasColumnType("int");
-            builder.Property(c => c.DateCreation)
+            builder.Property(c => c.DateExpiration)
                 .HasColumnName("date_creation")
                 .HasColumnType("date");
             builder.Property(c => c.CVC)

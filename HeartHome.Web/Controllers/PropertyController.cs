@@ -31,9 +31,7 @@ namespace HeartHome.Web.Controllers
                 LessorID = c.LessorID,
                 Type = c.Type,
                 Address = c.Address,
-                Name = c.Name,
-                Phone = c.Phone
-
+                Name = c.Name
             });
         }
     }
