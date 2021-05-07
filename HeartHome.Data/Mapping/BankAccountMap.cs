@@ -24,7 +24,7 @@ namespace HeartHome.Data.Mapping
                 .HasColumnType("int");
             builder.Property(c => c.DateExpiration)
                 .HasColumnName("date_creation")
-                .HasColumnType("date");
+                .HasColumnType("string");
             builder.Property(c => c.CVC)
                 .HasColumnName("cvc")
                 .HasColumnType("int");

@@ -25,7 +25,7 @@ namespace HeartHome.Data.Mapping
                 .HasColumnName("lessor_id");
             builder.Property(c => c.DateContract)
                 .HasColumnName("date_contract")
-                .HasColumnType("date");
+                .HasColumnType("string");
             builder.Property(c => c.detail)
                 .HasColumnName("detail")
                 .HasMaxLength(50)
@@ -36,17 +36,17 @@ namespace HeartHome.Data.Mapping
             builder.HasOne(c => c.Lessor)
                .WithMany(c => c.Contracts)
                .HasForeignKey(c => c.LessorID)
-               .HasConstraintName("fk_lessor_contract")
+               .HasConstraintName("fk_contract_lessor")
                .IsRequired(true);
             builder.HasOne(c => c.Property)
                .WithMany(c => c.Contracts)
                .HasForeignKey(c => c.PropertyID)
-               .HasConstraintName("fk_property_contract")
+               .HasConstraintName("fk_contract_property")
                .IsRequired(true);
             builder.HasOne(c => c.Tenant)
                .WithMany(c => c.Contracts)
                .HasForeignKey(c => c.TenantID)
-               .HasConstraintName("fk_property_contract")
+               .HasConstraintName("fk_contract_tenant")
                .IsRequired(true);
         }
     }

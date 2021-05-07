@@ -23,7 +23,7 @@ namespace HeartHome.Data.Mapping
                 .IsUnicode(false);
             builder.Property(c => c.Date)
                 .HasColumnName("date_comment")
-                .HasColumnType("date");
+                .HasColumnType("string");
 
             //FK
 
