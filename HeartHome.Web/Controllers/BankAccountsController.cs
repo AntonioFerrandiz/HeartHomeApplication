@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HeartHome.Data;
 using HeartHome.Entities;
+using HeartHome.Web.Models;
 
 namespace HeartHome.Web.Controllers
 {
@@ -23,9 +24,18 @@ namespace HeartHome.Web.Controllers
 
         // GET: api/BankAccounts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BankAccount>>> GetBankAccounts()
+        public async Task<IEnumerable<BankAccountModel>> GetBankAccounts()
         {
-            return await _context.BankAccounts.ToListAsync();
+            var bankAccountsList = await _context.BankAccounts.ToListAsync();
+
+            return bankAccountsList.Select(c => new Models.BankAccountModel
+            {
+                BankAccountID = c.BankAccountID,
+                BankID = c.BankID,
+                AccountNumber = c.AccountNumber,
+                DateExpiration = c.DateExpiration,
+                CVC = c.CVC
+            });
         }
 
         // GET: api/BankAccounts/5

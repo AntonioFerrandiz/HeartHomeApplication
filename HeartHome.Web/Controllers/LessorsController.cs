@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HeartHome.Data;
 using HeartHome.Entities;
+using HeartHome.Web.Models;
 
 namespace HeartHome.Web.Controllers
 {
@@ -23,9 +24,20 @@ namespace HeartHome.Web.Controllers
 
         // GET: api/Lessors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Lessor>>> GetLessors()
+        public async Task<IEnumerable<LessorModel>> GetLessors()
         {
-            return await _context.Lessors.ToListAsync();
+            var lessorList = await _context.Lessors.ToListAsync();
+
+            return lessorList.Select(c => new Models.LessorModel
+            {
+                LessorID = c.LessorID,
+                AccountID = c.AccountID,
+                Name = c.Name,
+                Lastname = c.Lastname,
+                Email = c.Email,
+                Dni = c.Dni,
+                Phone = c.Phone
+            });
         }
 
         // GET: api/Lessors/5

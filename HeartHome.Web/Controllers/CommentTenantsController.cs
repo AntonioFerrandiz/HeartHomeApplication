@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HeartHome.Data;
 using HeartHome.Entities;
+using HeartHome.Web.Models;
 
 namespace HeartHome.Web.Controllers
 {
@@ -23,9 +24,17 @@ namespace HeartHome.Web.Controllers
 
         // GET: api/CommentTenants
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CommentTenant>>> GetCommentTenants()
+        public async Task<IEnumerable<CommentTenantModel>> GetCommentTenants()
         {
-            return await _context.CommentTenants.ToListAsync();
+            var commentTenantList = await _context.CommentTenants.ToListAsync();
+
+            return commentTenantList.Select(c => new Models.CommentTenantModel
+            {
+                CommentID = c.CommentID,
+                LessorID = c.LessorID,
+                Date = c.Date,
+                Detail = c.Detail
+            });
         }
 
         // GET: api/CommentTenants/5

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HeartHome.Data;
 using HeartHome.Entities;
+using HeartHome.Web.Models;
 
 namespace HeartHome.Web.Controllers
 {
@@ -23,9 +24,17 @@ namespace HeartHome.Web.Controllers
 
         // GET: api/Publications
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Publication>>> GetPublications()
+        public async Task<IEnumerable<PublicationModel>> GetPublications()
         {
-            return await _context.Publications.ToListAsync();
+            var publicationList = await _context.Publications.ToListAsync();
+
+            return publicationList.Select(c => new Models.PublicationModel
+            {
+                PublicationID = c.PublicationID,
+                PropertyID = c.PropertyID,
+                CommentID = c.CommentID,
+                content = c.content
+            });
         }
 
         // GET: api/Publications/5
