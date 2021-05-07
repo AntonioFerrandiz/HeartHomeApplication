@@ -38,5 +38,100 @@ namespace HeartHome.Web.Controllers
                 Name = c.Name
             });
         }
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetPropertyByID([FromRoute] int id)
+        {
+            var property = await _context.Properties.FindAsync(id);
+            if (property == null)
+            {
+                return NotFound();
+            }
+            return Ok(new PropertyModel
+            {
+                PropertyID = property.PropertyID,
+                CityID = property.CityID,
+                LessorID = property.LessorID,
+                Type = property.Type,
+                Address = property.Address,
+                Name = property.Name
+            });
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostProperty([FromBody] CreatePropertyModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Property property = new Property
+            {
+                Name = model.Name,
+                Type = model.Type,
+                Address = model.Address
+            };
+            _context.Properties.Add(property);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok();
+
+        }
+        [HttpPut("[action]/{id}")]
+        public async Task<IActionResult> PutCategory([FromBody] UpdatePropertyModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (model.PropertyID <= 0)
+                return BadRequest();
+
+            var property = await _context.Properties.FirstOrDefaultAsync(c => c.PropertyID == model.PropertyID);
+
+            if (property == null)
+                return NotFound();
+
+            property.Name = model.Name;
+            property.Type = model.Type;
+            property.Address = model.Address;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok();
+        }
+
+        // DELETE: api/Categories/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProperty([FromRoute] int id)
+        {
+            var property = await _context.Properties.FindAsync(id);
+
+            if (property == null)
+                return NotFound();
+
+            _context.Properties.Remove(property);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
+        }
     }
 }
