@@ -15,15 +15,19 @@ namespace HeartHome.Web.Controllers
     public class PropertyController : ControllerBase
     {
         private readonly DbContextHeartHomeApp _context;
+
         public PropertyController(DbContextHeartHomeApp context)
         {
             _context = context;
         }
 
+        // GET: api/Properties
+        //[HttpGet]
         [HttpGet()]
         public async Task<IEnumerable<PropertyModel>> GetProperties()
         {
             var propertyList = await _context.Properties.ToListAsync();
+
             return propertyList.Select(c => new PropertyModel
             {
                 PropertyID = c.PropertyID,

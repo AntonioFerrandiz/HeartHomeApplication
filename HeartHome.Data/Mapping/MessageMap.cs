@@ -24,7 +24,7 @@ namespace HeartHome.Data.Mapping
             builder.Property(c => c.Content)
                 .HasColumnName("content")
                 .IsUnicode(false)
-                .HasMaxLength(50);
+                .HasMaxLength(250);
 
             //FK  //Tabla con FK es public virtual
             //la otra es con Icollection

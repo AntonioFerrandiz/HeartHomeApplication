@@ -24,7 +24,8 @@ namespace HeartHome.Data.Mapping
             builder.Property(c => c.LessorID)
                 .HasColumnName("lessor_id");
             builder.Property(c => c.DateContract)
-                .HasColumnName("date_contract");
+                .HasColumnName("date_contract")
+                .HasColumnType("date");
             builder.Property(c => c.detail)
                 .HasColumnName("detail")
                 .HasMaxLength(50)

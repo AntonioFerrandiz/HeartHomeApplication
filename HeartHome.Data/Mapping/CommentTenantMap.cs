@@ -22,8 +22,8 @@ namespace HeartHome.Data.Mapping
                 .HasMaxLength(50)
                 .IsUnicode(false);
             builder.Property(c => c.Date)
-                .HasColumnName("date")
-                .IsUnicode(false);
+                .HasColumnName("date_comment")
+                .HasColumnType("date");
 
             //FK
 

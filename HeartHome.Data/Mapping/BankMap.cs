@@ -19,7 +19,8 @@ namespace HeartHome.Data.Mapping
             builder.Property(c => c.BankID)
                 .HasColumnType("bank_id");
             builder.Property(c => c.Name)
-                .HasColumnName("name");
+                .HasColumnName("name")
+                .IsUnicode(false);
         }
     }
 }
